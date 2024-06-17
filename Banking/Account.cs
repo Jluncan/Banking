@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Banking {
     public class Account {
+        private static int NextId { get; set; } = 1;
+
         public int AccountId { get; set; } = 0;
         public string Description { get; set; } = string.Empty;
         public decimal Balance { get; set; } = 0;
@@ -44,5 +46,11 @@ namespace Banking {
         }
 
 
+
+        public Account(string descirption) {
+            AccountId = NextId++;
+            Description = descirption;
+            Balance = 0;    
+        }
     }
 }
