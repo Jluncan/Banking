@@ -6,51 +6,43 @@ using System.Threading.Tasks;
 
 namespace Banking {
     public class Account {
-        private static int NextId { get; set; } = 1;
+        private static int nextId { get; set; } = 1;
 
         public int AccountId { get; set; } = 0;
         public string Description { get; set; } = string.Empty;
         public decimal Balance { get; set; } = 0;
 
         public bool Deposit(decimal Amount) {
-            if (Amount <=0) {
-                Console.WriteLine("Amount cannot be zero or negative!");
-                return false;
+            if (Amount <= 0) {
+                throw new NonPositiveAmountException();
             }
             Balance += Amount;
             return true;
         }
+
         public bool Withdraw(decimal Amount) {
-            if (Amount <=0) {
-                Console.WriteLine("Amount cannot be zero or negative!");
-                return false;
-
+            if (Amount <= 0) {
+                throw new NonPositiveAmountException();
             }
-            if(Amount> Balance) {
-                Console.WriteLine("Insufficient Funds!");
-                return false;
-
-
+            if (Amount > Balance) {
+                throw new InsufficientFundsException { Amount = Amount, Balance = Balance };
             }
             Balance -= Amount;
             return true;
-
         }
 
         public bool Transfer(decimal Amount, Account ax) {
             var success = this.Withdraw(Amount);
-            if(success==true) {
-               ax.Deposit(Amount);
+            if (success == true) {
+                ax.Deposit(Amount);
             }
             return true;
         }
 
-
-
-        public Account(string descirption) {
-            AccountId = NextId++;
-            Description = descirption;
-            Balance = 0;    
+        public Account(string description) {
+            AccountId = nextId++;
+            Description = description;
+            Balance = 0;
         }
     }
 }

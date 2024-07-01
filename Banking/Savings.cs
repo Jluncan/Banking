@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Banking {
     internal class Savings : Account {
+
         public decimal IntRate { get; set; } = 0.12m;
-        
+
         public void CalcAndPayInterest(int NbrOfMonths) {
             decimal Interest = Balance * (IntRate / 12) * NbrOfMonths;
             Deposit(Interest);
@@ -15,7 +16,6 @@ namespace Banking {
 
         public Savings(string description) : base(description) {
         }
-
 
     }
 
