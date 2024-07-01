@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Banking {
-    internal class NonPositiveAmountException : Exception {
+    public class NonPositiveAmountException : Exception {
 
         public NonPositiveAmountException() : base() { }
 

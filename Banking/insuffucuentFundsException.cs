@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Banking {
-    internal class InsufficientFundsException : Exception {
+    public class InsufficientFundsException : Exception {
 
         public decimal Balance { get; set; }
         public decimal Amount { get; set; }
